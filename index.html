@@ -3,18 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GLOBAL SATELITAL</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background: #06152d;
+        }
+
+        /* MENÚ SUPERIOR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 15, 35, 0.90);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00c6ff;
+        }
+
+        /* PORTADA */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+
+            background:
+                linear-gradient(
+                    rgba(3, 25, 60, 0.82),
+                    rgba(0, 80, 150, 0.70)
+                ),
+                radial-gradient(
+                    circle at center,
+                    #00aaff 0%,
+                    #064b88 35%,
+                    #020b1c 100%
+                );
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #00c6ff;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        /* BOTONES */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-install {
+            background: #16c96b;
+            color: white;
+        }
+
+        .btn-plans {
+            background: #008cff;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* CELULARES */
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 23px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>🌐 GLOBAL SATELITAL</h1>
+    <!-- MENÚ -->
+    <header>
 
-    <h2>Internet y Televisión por Fibra Óptica</h2>
+        <div class="logo">
+            GLOBAL SATELITAL
+        </div>
 
-    <p>
-        Conectando hogares y empresas con velocidad,
-        estabilidad y confianza.
-    </p>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#internet">Internet</a>
+            <a href="#tv">TV</a>
+            <a href="#cobertura">Cobertura</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+    </header>
+
+
+    <!-- PORTADA -->
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <h1>GLOBAL SATELITAL</h1>
+
+            <h2>Internet y Televisión por Fibra Óptica</h2>
+
+            <p>
+                Conectando hogares y empresas con
+                velocidad, estabilidad y confianza.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#contacto" class="btn btn-install">
+                    🟢 Solicitar instalación
+                </a>
+
+                <a href="#internet" class="btn btn-plans">
+                    🔵 Ver planes
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </body>
 </html>
