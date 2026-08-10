@@ -1,1244 +1,594 @@
-<!DOCTYPE html>
-<html lang="es">
+<title>GLOBAL SATELITAL</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
 
-    <title>GLOBAL SATELITAL</title>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <style>
+    html {
+        scroll-behavior: smooth;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #172033;
+        background: #f4f8fc;
+    }
+
+
+    /* =========================
+       MENÚ
+    ========================== */
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        padding: 18px 6%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background: rgba(3, 15, 35, 0.94);
+
+        backdrop-filter: blur(10px);
+
+        z-index: 1000;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+
+        margin-left: 25px;
+
+        font-size: 15px;
+
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #00c6ff;
+    }
+
+    .menu-btn {
+        display: none;
+
+        font-size: 28px;
+
+        color: white;
+
+        background: none;
+
+        border: none;
+
+        cursor: pointer;
+    }
+
+
+    /* =========================
+       PORTADA
+    ========================== */
+
+    .hero {
+
+        min-height: 100vh;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+
+        padding: 120px 20px 60px;
+
+        color: white;
+
+        background:
+
+            linear-gradient(
+                rgba(3, 25, 60, 0.82),
+                rgba(0, 80, 150, 0.70)
+            ),
+
+            radial-gradient(
+                circle at center,
+                #00aaff 0%,
+                #064b88 35%,
+                #020b1c 100%
+            );
+    }
+
+    .hero-content {
+        max-width: 850px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: #00c6ff;
+    }
+
+    .hero p {
+        font-size: 19px;
+        line-height: 1.6;
+        margin-bottom: 35px;
+    }
+
+    .buttons {
+
+        display: flex;
+
+        justify-content: center;
+
+        gap: 20px;
+
+        flex-wrap: wrap;
+    }
+
+    .btn {
+
+        padding: 15px 28px;
+
+        border-radius: 30px;
+
+        text-decoration: none;
+
+        font-weight: bold;
+
+        transition: 0.3s;
+    }
+
+    .btn-install {
+
+        background: #16c96b;
+
+        color: white;
+    }
+
+    .btn-plans {
+
+        background: #008cff;
+
+        color: white;
+    }
+
+    .btn:hover {
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 8px 20px rgba(0,0,0,0.3);
+    }
+
+
+    /* =========================
+       SECCIÓN PLANES
+    ========================== */
+
+    .planes {
+
+        padding: 90px 6%;
+
+        background: #f4f8fc;
+
+        text-align: center;
+    }
+
+    .planes h2 {
+
+        font-size: 38px;
+
+        color: #073b72;
+
+        margin-bottom: 15px;
+    }
+
+    .planes-intro {
+
+        max-width: 700px;
+
+        margin: 0 auto 35px;
+
+        color: #5b6575;
+
+        font-size: 18px;
+
+        line-height: 1.6;
+    }
+
+
+    /* BOTONES DE CATEGORÍA */
+
+    .plan-buttons {
+
+        display: flex;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        margin-bottom: 45px;
+
+        flex-wrap: wrap;
+    }
+
+    .plan-tab {
+
+        border: none;
+
+        padding: 14px 25px;
+
+        border-radius: 30px;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        background: #dceaf7;
+
+        color: #064b88;
+
+        transition: 0.3s;
+    }
+
+    .plan-tab.active {
+
+        background: #007eea;
+
+        color: white;
+
+        box-shadow:
+            0 5px 15px rgba(0,126,234,0.3);
+    }
+
+
+    /* TARJETAS */
+
+    .planes-grid {
+
+        max-width: 1200px;
+
+        margin: auto;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(5, 1fr);
+
+        gap: 20px;
+
+        align-items: stretch;
+    }
+
+    .plan-card {
+
+        position: relative;
+
+        background: white;
+
+        border-radius: 18px;
+
+        padding: 30px 20px;
+
+        box-shadow:
+            0 8px 25px rgba(0,0,0,0.08);
+
+        transition: 0.3s;
+
+        border: 2px solid transparent;
+    }
+
+    .plan-card:hover {
+
+        transform: translateY(-8px);
+
+        border-color: #00aaff;
+
+        box-shadow:
+            0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    .plan-card h3 {
+
+        color: #064b88;
+
+        font-size: 30px;
+
+        margin-bottom: 10px;
+    }
+
+    .plan-card .tipo {
+
+        color: #667085;
+
+        margin-bottom: 20px;
+
+        min-height: 40px;
+    }
+
+    .price {
+
+        font-size: 28px;
+
+        font-weight: bold;
+
+        color: #073b72;
+
+        margin-bottom: 8px;
+    }
+
+    .month {
+
+        color: #777;
+
+        margin-bottom: 25px;
+    }
+
+    .plan-card .solicitar {
+
+        display: inline-block;
+
+        width: 100%;
+
+        padding: 12px;
+
+        border-radius: 25px;
+
+        background: #16c96b;
+
+        color: white;
+
+        text-decoration: none;
+
+        font-weight: bold;
+
+        transition: 0.3s;
+    }
+
+    .plan-card .solicitar:hover {
+
+        background: #0eaa57;
+    }
+
+
+    /* PLAN DESTACADO */
+
+    .popular {
+
+        border: 3px solid #00aaff;
+
+        transform: scale(1.03);
+    }
+
+    .popular:hover {
+
+        transform:
+            scale(1.03)
+            translateY(-8px);
+    }
+
+    .badge {
+
+        position: absolute;
+
+        top: -14px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        background: #ffb400;
+
+        color: #172033;
+
+        padding: 7px 15px;
+
+        border-radius: 20px;
+
+        font-size: 13px;
+
+        font-weight: bold;
+
+        white-space: nowrap;
+    }
+
+
+    /* =========================
+       SECCIONES TEMPORALES
+    ========================== */
+
+    .placeholder {
+
+        min-height: 300px;
+
+        padding: 80px 20px;
+
+        text-align: center;
+
+        background: white;
+    }
+
+    .placeholder h2 {
+
+        color: #073b72;
+
+        margin-bottom: 15px;
+
+        font-size: 34px;
+    }
+
+    .placeholder p {
+
+        color: #667085;
+
+        font-size: 18px;
+    }
+
+
+    /* =========================
+       CELULARES
+    ========================== */
+
+    @media (max-width: 900px) {
+
+        .planes-grid {
+
+            grid-template-columns:
+                repeat(2, 1fr);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #172033;
-            background: #f4f8fc;
-        }
+    }
 
 
-        /* =========================
-           MENÚ
-        ========================== */
+    @media (max-width: 768px) {
 
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
 
-            padding: 18px 6%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            background: rgba(3, 15, 35, 0.94);
-
-            backdrop-filter: blur(10px);
-
-            z-index: 1000;
+            padding: 15px 20px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            letter-spacing: 1px;
-        }
 
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-
-            margin-left: 25px;
-
-            font-size: 15px;
-
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #00c6ff;
+            font-size: 20px;
         }
 
         .menu-btn {
-            display: none;
 
-            font-size: 28px;
-
-            color: white;
-
-            background: none;
-
-            border: none;
-
-            cursor: pointer;
+            display: block;
         }
 
+        nav {
 
-        /* =========================
-           PORTADA
-        ========================== */
+            display: none;
 
-        .hero {
+            position: absolute;
 
-            min-height: 100vh;
+            top: 100%;
+
+            left: 0;
+
+            width: 100%;
+
+            background:
+                rgba(3, 15, 35, 0.98);
+
+            flex-direction: column;
+
+            padding: 15px 0;
+        }
+
+        nav.active {
 
             display: flex;
+        }
 
-            align-items: center;
+        nav a {
 
-            justify-content: center;
+            margin: 0;
+
+            padding: 15px;
+
+            width: 100%;
 
             text-align: center;
 
-            padding: 120px 20px 60px;
-
-            color: white;
-
-            background:
-
-                linear-gradient(
-                    rgba(3, 25, 60, 0.82),
-                    rgba(0, 80, 150, 0.70)
-                ),
-
-                radial-gradient(
-                    circle at center,
-                    #00aaff 0%,
-                    #064b88 35%,
-                    #020b1c 100%
-                );
+            font-size: 16px;
         }
 
-        .hero-content {
-            max-width: 850px;
+        nav a:hover {
+
+            background:
+                rgba(0, 140, 255, 0.2);
+        }
+
+        .hero {
+
+            padding-top: 130px;
         }
 
         .hero h1 {
-            font-size: 52px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+
+            font-size: 38px;
         }
 
         .hero h2 {
-            font-size: 30px;
-            margin-bottom: 20px;
-            color: #00c6ff;
+
+            font-size: 23px;
         }
 
         .hero p {
-            font-size: 19px;
-            line-height: 1.6;
-            margin-bottom: 35px;
+
+            font-size: 17px;
         }
 
         .buttons {
 
-            display: flex;
+            flex-direction: column;
 
-            justify-content: center;
-
-            gap: 20px;
-
-            flex-wrap: wrap;
+            align-items: center;
         }
 
         .btn {
 
-            padding: 15px 28px;
-
-            border-radius: 30px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-
-            transition: 0.3s;
+            width: 220px;
         }
-
-        .btn-install {
-
-            background: #16c96b;
-
-            color: white;
-        }
-
-        .btn-plans {
-
-            background: #008cff;
-
-            color: white;
-        }
-
-        .btn:hover {
-
-            transform: translateY(-3px);
-
-            box-shadow:
-                0 8px 20px rgba(0,0,0,0.3);
-        }
-
-
-        /* =========================
-           SECCIÓN PLANES
-        ========================== */
 
         .planes {
 
-            padding: 90px 6%;
-
-            background: #f4f8fc;
-
-            text-align: center;
+            padding: 70px 20px;
         }
 
         .planes h2 {
 
-            font-size: 38px;
-
-            color: #073b72;
-
-            margin-bottom: 15px;
+            font-size: 30px;
         }
-
-        .planes-intro {
-
-            max-width: 700px;
-
-            margin: 0 auto 35px;
-
-            color: #5b6575;
-
-            font-size: 18px;
-
-            line-height: 1.6;
-        }
-
-
-        /* BOTONES DE CATEGORÍA */
-
-        .plan-buttons {
-
-            display: flex;
-
-            justify-content: center;
-
-            gap: 15px;
-
-            margin-bottom: 45px;
-
-            flex-wrap: wrap;
-        }
-
-        .plan-tab {
-
-            border: none;
-
-            padding: 14px 25px;
-
-            border-radius: 30px;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            background: #dceaf7;
-
-            color: #064b88;
-
-            transition: 0.3s;
-        }
-
-        .plan-tab.active {
-
-            background: #007eea;
-
-            color: white;
-
-            box-shadow:
-                0 5px 15px rgba(0,126,234,0.3);
-        }
-
-
-        /* TARJETAS */
 
         .planes-grid {
 
-            max-width: 1200px;
+            grid-template-columns: 1fr;
 
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(5, 1fr);
-
-            gap: 20px;
-
-            align-items: stretch;
+            max-width: 400px;
         }
-
-        .plan-card {
-
-            position: relative;
-
-            background: white;
-
-            border-radius: 18px;
-
-            padding: 30px 20px;
-
-            box-shadow:
-                0 8px 25px rgba(0,0,0,0.08);
-
-            transition: 0.3s;
-
-            border: 2px solid transparent;
-        }
-
-        .plan-card:hover {
-
-            transform: translateY(-8px);
-
-            border-color: #00aaff;
-
-            box-shadow:
-                0 15px 35px rgba(0,0,0,0.12);
-        }
-
-        .plan-card h3 {
-
-            color: #064b88;
-
-            font-size: 30px;
-
-            margin-bottom: 10px;
-        }
-
-        .plan-card .tipo {
-
-            color: #667085;
-
-            margin-bottom: 20px;
-
-            min-height: 40px;
-        }
-
-        .price {
-
-            font-size: 28px;
-
-            font-weight: bold;
-
-            color: #073b72;
-
-            margin-bottom: 8px;
-        }
-
-        .month {
-
-            color: #777;
-
-            margin-bottom: 25px;
-        }
-
-        .plan-card .solicitar {
-
-            display: inline-block;
-
-            width: 100%;
-
-            padding: 12px;
-
-            border-radius: 25px;
-
-            background: #16c96b;
-
-            color: white;
-
-            text-decoration: none;
-
-            font-weight: bold;
-
-            transition: 0.3s;
-        }
-
-        .plan-card .solicitar:hover {
-
-            background: #0eaa57;
-        }
-
-
-        /* PLAN DESTACADO */
 
         .popular {
 
-            border: 3px solid #00aaff;
-
-            transform: scale(1.03);
+            transform: none;
         }
 
         .popular:hover {
 
-            transform:
-                scale(1.03)
-                translateY(-8px);
+            transform: translateY(-8px);
         }
 
-        .badge {
+    }
 
-            position: absolute;
-
-            top: -14px;
-
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            background: #ffb400;
-
-            color: #172033;
-
-            padding: 7px 15px;
-
-            border-radius: 20px;
-
-            font-size: 13px;
-
-            font-weight: bold;
-
-            white-space: nowrap;
-        }
-
-
-        /* =========================
-           SECCIONES TEMPORALES
-        ========================== */
-
-        .placeholder {
-
-            min-height: 300px;
-
-            padding: 80px 20px;
-
-            text-align: center;
-
-            background: white;
-        }
-
-        .placeholder h2 {
-
-            color: #073b72;
-
-            margin-bottom: 15px;
-
-            font-size: 34px;
-        }
-
-        .placeholder p {
-
-            color: #667085;
-
-            font-size: 18px;
-        }
-
-
-        /* =========================
-           CELULARES
-        ========================== */
-
-        @media (max-width: 900px) {
-
-            .planes-grid {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-        }
-
-
-        @media (max-width: 768px) {
-
-            header {
-
-                padding: 15px 20px;
-            }
-
-            .logo {
-
-                font-size: 20px;
-            }
-
-            .menu-btn {
-
-                display: block;
-            }
-
-            nav {
-
-                display: none;
-
-                position: absolute;
-
-                top: 100%;
-
-                left: 0;
-
-                width: 100%;
-
-                background:
-                    rgba(3, 15, 35, 0.98);
-
-                flex-direction: column;
-
-                padding: 15px 0;
-            }
-
-            nav.active {
-
-                display: flex;
-            }
-
-            nav a {
-
-                margin: 0;
-
-                padding: 15px;
-
-                width: 100%;
-
-                text-align: center;
-
-                font-size: 16px;
-            }
-
-            nav a:hover {
-
-                background:
-                    rgba(0, 140, 255, 0.2);
-            }
-
-            .hero {
-
-                padding-top: 130px;
-            }
-
-            .hero h1 {
-
-                font-size: 38px;
-            }
-
-            .hero h2 {
-
-                font-size: 23px;
-            }
-
-            .hero p {
-
-                font-size: 17px;
-            }
-
-            .buttons {
-
-                flex-direction: column;
-
-                align-items: center;
-            }
-
-            .btn {
-
-                width: 220px;
-            }
-
-            .planes {
-
-                padding: 70px 20px;
-            }
-
-            .planes h2 {
-
-                font-size: 30px;
-            }
-
-            .planes-grid {
-
-                grid-template-columns: 1fr;
-
-                max-width: 400px;
-            }
-
-            .popular {
-
-                transform: none;
-            }
-
-            .popular:hover {
-
-                transform: translateY(-8px);
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-    <!-- =========================
-         MENÚ
-    ========================== -->
-
-    <header>
-
-        <div class="logo">
-            GLOBAL SATELITAL
-        </div>
-
-        <button
-            class="menu-btn"
-            onclick="toggleMenu()">
-
-            ☰
-
-        </button>
-
-        <nav id="menu">
-
-            <a href="#inicio" onclick="closeMenu()">
-                Inicio
-            </a>
-
-            <a href="#internet" onclick="closeMenu()">
-                Internet
-            </a>
-
-            <a href="#tv" onclick="closeMenu()">
-                TV
-            </a>
-
-            <a href="#cobertura" onclick="closeMenu()">
-                Cobertura
-            </a>
-
-            <a href="#nosotros" onclick="closeMenu()">
-                Nosotros
-            </a>
-
-            <a href="#contacto" onclick="closeMenu()">
-                Contacto
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <!-- =========================
-         PORTADA
-    ========================== -->
-
-    <section
-        class="hero"
-        id="inicio">
-
-        <div class="hero-content">
-
-            <h1>
-                GLOBAL SATELITAL
-            </h1>
-
-            <h2>
-                Internet y Televisión por Fibra Óptica
-            </h2>
-
-            <p>
-                Conectando hogares y empresas
-                con velocidad, estabilidad y confianza.
-            </p>
-
-            <div class="buttons">
-
-                <a
-                    href="#internet"
-                    class="btn btn-install">
-
-                    🟢 Solicitar instalación
-
-                </a>
-
-                <a
-                    href="#internet"
-                    class="btn btn-plans">
-
-                    🔵 Ver planes
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         PLANES
-    ========================== -->
-
-    <section
-        class="planes"
-        id="internet">
-
-        <h2>
-            📡 Nuestros planes
-        </h2>
-
-        <p class="planes-intro">
-
-            Elige la opción que mejor se adapte
-            a las necesidades de tu hogar o empresa.
-
-        </p>
-
-
-        <!-- BOTONES -->
-
-        <div class="plan-buttons">
-
-            <button
-                class="plan-tab active"
-                onclick="mostrarPlanes('internet')">
-
-                📡 INTERNET
-
-            </button>
-
-            <button
-                class="plan-tab"
-                onclick="mostrarPlanes('combo')">
-
-                📺 INTERNET + TV
-
-            </button>
-
-        </div>
-
-
-        <!-- PLANES INTERNET -->
-
-        <div
-            id="planes-internet"
-            class="planes-grid">
-
-
-            <!-- 20 Mbps -->
-
-            <div class="plan-card">
-
-                <h3>
-                    20 Mbps
-                </h3>
-
-                <p class="tipo">
-                    Internet por fibra óptica
-                </p>
-
-                <div class="price">
-                    $25.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 50 Mbps -->
-
-            <div class="plan-card">
-
-                <h3>
-                    50 Mbps
-                </h3>
-
-                <p class="tipo">
-                    Internet por fibra óptica
-                </p>
-
-                <div class="price">
-                    $35.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 100 Mbps DESTACADO -->
-
-            <div class="plan-card popular">
-
-                <div class="badge">
-                    ⭐ MÁS ELEGIDO
-                </div>
-
-                <h3>
-                    100 Mbps
-                </h3>
-
-                <p class="tipo">
-                    Internet por fibra óptica
-                </p>
-
-                <div class="price">
-                    $45.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 150 Mbps -->
-
-            <div class="plan-card">
-
-                <h3>
-                    150 Mbps
-                </h3>
-
-                <p class="tipo">
-                    Internet por fibra óptica
-                </p>
-
-                <div class="price">
-                    $55.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 200 Mbps -->
-
-            <div class="plan-card">
-
-                <h3>
-                    200 Mbps
-                </h3>
-
-                <p class="tipo">
-                    Internet por fibra óptica
-                </p>
-
-                <div class="price">
-                    $65.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             PLANES INTERNET + TV
-        ========================== -->
-
-        <div
-            id="planes-combo"
-            class="planes-grid"
-            style="display:none;">
-
-
-            <!-- 20 Mbps + TV -->
-
-            <div class="plan-card">
-
-                <h3>
-                    20 Mbps
-                </h3>
-
-                <p class="tipo">
-                    📡 Internet + 📺 TV
-                </p>
-
-                <div class="price">
-                    $35.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 50 Mbps + TV -->
-
-            <div class="plan-card">
-
-                <h3>
-                    50 Mbps
-                </h3>
-
-                <p class="tipo">
-                    📡 Internet + 📺 TV
-                </p>
-
-                <div class="price">
-                    $45.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 100 Mbps + TV -->
-
-            <div class="plan-card popular">
-
-                <div class="badge">
-                    ⭐ MÁS ELEGIDO
-                </div>
-
-                <h3>
-                    100 Mbps
-                </h3>
-
-                <p class="tipo">
-                    📡 Internet + 📺 TV
-                </p>
-
-                <div class="price">
-                    $55.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 150 Mbps + TV -->
-
-            <div class="plan-card">
-
-                <h3>
-                    150 Mbps
-                </h3>
-
-                <p class="tipo">
-                    📡 Internet + 📺 TV
-                </p>
-
-                <div class="price">
-                    $65.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-
-            <!-- 200 Mbps + TV -->
-
-            <div class="plan-card">
-
-                <h3>
-                    200 Mbps
-                </h3>
-
-                <p class="tipo">
-                    📡 Internet + 📺 TV
-                </p>
-
-                <div class="price">
-                    $75.000
-                </div>
-
-                <p class="month">
-                    por mes
-                </p>
-
-                <a
-                    href="#contacto"
-                    class="solicitar">
-
-                    Solicitar instalación
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         SECCIONES QUE COMPLETAREMOS
-    ========================== -->
-
-    <section
-        class="placeholder"
-        id="tv">
-
-        <h2>
-            📺 Televisión
-        </h2>
-
-        <p>
-            Próximamente conocerás más sobre
-            nuestro servicio de televisión.
-        </p>
-
-    </section>
-
-
-    <section
-        class="placeholder"
-        id="cobertura">
-
-        <h2>
-            📍 Cobertura
-        </h2>
-
-        <p>
-            Próximamente mostraremos nuestras
-            zonas de cobertura.
-        </p>
-
-    </section>
-
-
-    <section
-        class="placeholder"
-        id="nosotros">
-
-        <h2>
-            👥 Nosotros
-        </h2>
-
-        <p>
-            Conoce más sobre GLOBAL SATELITAL.
-        </p>
-
-    </section>
-
-
-    <section
-        class="placeholder"
-        id="contacto">
-
-        <h2>
-            📞 Contacto
-        </h2>
-
-        <p>
-            Próximamente podrás contactarnos
-            directamente por WhatsApp.
-        </p>
-
-    </section>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
-
-    <script>
-
-        function toggleMenu() {
-
-            document
-                .getElementById("menu")
-                .classList
-                .toggle("active");
-
-        }
-
-
-        function closeMenu() {
-
-            document
-                .getElementById("menu")
-                .classList
-                .remove("active");
-
-        }
-
-
-        function mostrarPlanes(tipo) {
-
-            const internet =
-                document.getElementById(
-                    "planes-internet"
-                );
-
-            const combo =
-                document.getElementById(
-                    "planes-combo"
-                );
-
-            const botones =
-                document.querySelectorAll(
-                    ".plan-tab"
-                );
-
-
-            if (tipo === "internet") {
-
-                internet.style.display =
-                    "grid";
-
-                combo.style.display =
-                    "none";
-
-                botones[0]
-                    .classList
-                    .add("active");
-
-                botones[1]
-                    .classList
-                    .remove("active");
-
-            }
-
-            else {
-
-                internet.style.display =
-                    "none";
-
-                combo.style.display =
-                    "grid";
-
-                botones[0]
-                    .classList
-                    .remove("active");
-
-                botones[1]
-                    .classList
-                    .add("active");
-
-            }
-
-        }
-
-    </script>
-
-
-</body>
-
-</html>
+</style>
