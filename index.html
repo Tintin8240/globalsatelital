@@ -4,764 +4,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GLOBAL SATELITAL | Conectamos tu mundo</title>
-
   <style>
-    :root {
-      --azul: #009ee8;
-      --azul-oscuro: #020814;
-      --verde: #00d876;
-      --texto: #eef9ff;
-      --gris: #a8bdc9;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--texto);
-      background: #020814;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .contenedor {
-      width: min(1180px, 92%);
-      margin: auto;
-    }
-
-    /* Menú */
-    header {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 20;
-      background: rgba(0, 5, 15, .48);
-      border-bottom: 1px solid rgba(0, 174, 255, .16);
-    }
-
-    nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      display: flex;
-      flex-direction: column;
-      color: white;
-      font-size: 1.15rem;
-      font-weight: 900;
-    }
-
-    .logo::before {
-      content: "◉";
-      color: var(--azul);
-      font-size: 1.6rem;
-      position: absolute;
-      transform: translateX(-25px);
-    }
-
-    .logo small {
-      color: var(--azul);
-      font-size: .52rem;
-      letter-spacing: 1px;
-      margin-top: 2px;
-    }
-
-    .menu {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 27px;
-      font-size: .82rem;
-      font-weight: bold;
-    }
-
-    .menu a:hover,
-    .menu a.activo { color: var(--azul); }
-
-    .telefono-menu {
-      color: white;
-      border: 1px solid rgba(255,255,255,.55);
-      padding: 9px 12px;
-      border-radius: 8px;
-      font-size: .78rem;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .btn-menu {
-      display: none;
-      color: white;
-      background: none;
-      border: 0;
-      font-size: 1.7rem;
-      cursor: pointer;
-    }
-
-    /* Portada */
-    .hero {
-      min-height: 770px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      padding: 140px 0 310px;
-      background:
-        linear-gradient(90deg, rgba(1, 6, 20, .98) 0%, rgba(2, 10, 31, .72) 40%, rgba(0, 13, 35, .16) 100%),
-        url("https://images-assets.nasa.gov/image/PIA04921/PIA04921~orig.jpg") center/cover;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 74% 45%, transparent 0 17%, rgba(0,0,0,.14) 26%, rgba(0,0,0,.65) 80%),
-        radial-gradient(circle at 18% 30%, rgba(0,166,255,.14), transparent 31%);
-    }
-
-    .hero-contenido {
-      position: relative;
-      z-index: 1;
-      max-width: 500px;
-    }
-
-    .subtitulo {
-      color: var(--azul);
-      font-size: .8rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .hero h1 {
-      max-width: 430px;
-      font-size: clamp(2.6rem, 5.2vw, 4.5rem);
-      line-height: .92;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-    }
-
-    .hero h1 span { color: var(--azul); }
-
-    .hero p {
-      max-width: 390px;
-      color: #d5e8f3;
-      font-size: 1.02rem;
-      line-height: 1.55;
-      margin-bottom: 24px;
-    }
-
-    .beneficios-hero {
-      display: flex;
-      gap: 22px;
-      margin: 20px 0 28px;
-    }
-
-    .beneficio-hero {
-      text-align: center;
-      color: #dcebf3;
-      font-size: .7rem;
-    }
-
-    .beneficio-hero strong {
-      display: block;
-      color: var(--azul);
-      font-size: 1.45rem;
-      margin-bottom: 5px;
-    }
-
-    .boton {
-      border: 0;
-      border-radius: 7px;
-      padding: 12px 18px;
-      font: inherit;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform .2s, filter .2s;
-    }
-
-    .boton:hover { transform: translateY(-2px); filter: brightness(1.12); }
-
-    .boton-azul {
-      color: white;
-      background: linear-gradient(135deg, #00b9ff, #0073d4);
-      box-shadow: 0 5px 15px rgba(0, 157, 232, .25);
-    }
-
-    /* Planes */
-    .planes-zona {
-      position: relative;
-      z-index: 5;
-      margin-top: -260px;
-      padding-bottom: 48px;
-    }
-
-    .planes-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .grupo-planes {
-      padding: 21px;
-      border-radius: 13px;
-      background: rgba(2, 15, 29, .91);
-      border: 1px solid rgba(0, 158, 232, .48);
-      box-shadow: 0 0 28px rgba(0, 122, 205, .13);
-    }
-
-    .grupo-planes.tv {
-      border-color: rgba(0, 216, 118, .48);
-      box-shadow: 0 0 28px rgba(0, 216, 118, .10);
-    }
-
-    .grupo-titulo {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 18px;
-    }
-
-    .grupo-titulo .icono { font-size: 1.45rem; color: var(--azul); }
-    .tv .grupo-titulo .icono { color: var(--verde); }
-
-    .grupo-titulo h2 { font-size: 1.12rem; }
-    .grupo-titulo p { color: var(--gris); font-size: .68rem; }
-
-    .planes {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-    }
-
-    .plan {
-      text-align: center;
-      min-width: 0;
-      padding: 8px 3px;
-      position: relative;
-    }
-
-    .plan.destacado {
-      border-radius: 8px;
-      background: linear-gradient(180deg, rgba(0, 157, 232, .24), rgba(0, 157, 232, .03));
-    }
-
-    .tv .plan.destacado {
-      background: linear-gradient(180deg, rgba(0, 216, 118, .24), rgba(0, 216, 118, .03));
-    }
-
-    .etiqueta {
-      position: absolute;
-      top: -9px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 8px;
-      padding: 3px 6px;
-      background: var(--azul);
-      color: white;
-      font-size: .48rem;
-      white-space: nowrap;
-      font-weight: bold;
-    }
-
-    .tv .etiqueta { background: var(--verde); color: #032215; }
-
-    .plan h3 { font-size: 1.45rem; line-height: 1; }
-    .plan .mbps { font-size: .65rem; color: #d2e6ef; }
-    .precio { color: var(--azul); font-size: .85rem; font-weight: bold; margin: 8px 0 2px; }
-    .tv .precio { color: var(--verde); }
-    .mes { color: #9ab0bd; font-size: .57rem; margin-bottom: 10px; }
-
-    .plan .boton {
-      width: 100%;
-      padding: 8px 3px;
-      font-size: .62rem;
-    }
-
-    .tv .boton { background: linear-gradient(135deg, #00e580, #00a652); }
-
-    .franja-beneficios {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      padding: 17px 0;
-      color: #d4e6f0;
-      text-align: center;
-      font-size: .72rem;
-    }
-
-    .franja-beneficios span { color: var(--azul); font-size: 1.25rem; margin-right: 6px; }
-
-    /* Secciones */
-    section:not(.hero) { padding: 70px 0; }
-
-    .seccion-oscura { background: #041124; }
-
-    .titulo-seccion {
-      text-align: center;
-      margin-bottom: 34px;
-    }
-
-    .titulo-seccion h2 {
-      color: var(--azul);
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-
-    .titulo-seccion p { color: var(--gris); }
-
-    .tarjetas-info {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .tarjeta-info {
-      border: 1px solid rgba(0, 158, 232, .22);
-      border-radius: 12px;
-      padding: 25px;
-      background: #06182d;
-    }
-
-    .tarjeta-info h3 { color: white; margin-bottom: 10px; }
-    .tarjeta-info p { color: var(--gris); font-size: .93rem; }
-
-    .contacto-box {
-      max-width: 680px;
-      margin: auto;
-      padding: 32px;
-      text-align: center;
-      border: 1px solid rgba(0, 158, 232, .3);
-      border-radius: 14px;
-      background: #06182d;
-    }
-
-    .contacto-box p { color: #d9edf7; margin: 12px 0 22px; }
-
-    footer {
-      padding: 22px;
-      text-align: center;
-      color: #8198a6;
-      font-size: .8rem;
-      background: #01050d;
-    }
-
-    /* Formulario */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(0, 3, 11, .83);
-    }
-
-    .modal.activo { display: flex; }
-
-    .modal-contenido {
-      position: relative;
-      width: min(520px, 100%);
-      max-height: 92vh;
-      overflow-y: auto;
-      border: 1px solid rgba(0, 174, 255, .5);
-      border-radius: 14px;
-      padding: 30px;
-      background: #07182c;
-      box-shadow: 0 0 35px rgba(0, 158, 232, .22);
-    }
-
-    .cerrar {
-      position: absolute;
-      top: 9px;
-      right: 15px;
-      color: white;
-      border: 0;
-      background: none;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    .modal-contenido h2 { color: var(--azul); margin-bottom: 8px; }
-
-    .resumen {
-      margin: 20px 0;
-      padding: 14px;
-      border-radius: 8px;
-      background: rgba(0, 158, 232, .12);
-      border-left: 3px solid var(--azul);
-      font-size: .92rem;
-    }
-
-    .resumen p { margin: 4px 0; }
-
-    .campo { margin-bottom: 14px; }
-    .campo label { display: block; font-weight: bold; margin-bottom: 6px; }
-
-    .campo input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #31526b;
-      border-radius: 6px;
-      background: #020d1b;
-      color: white;
-      font: inherit;
-    }
-
-    .campo input:focus { outline: 2px solid var(--azul); }
-
-    .btn-whatsapp {
-      width: 100%;
-      color: #062114;
-      background: #25d366;
-      font-size: .95rem;
-    }
-
-    @media (max-width: 900px) {
-      .planes-grid { grid-template-columns: 1fr; }
-      .planes-zona { margin-top: -170px; }
-      .hero { padding-bottom: 220px; }
-      .tarjetas-info { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 700px) {
-      .btn-menu { display: block; }
-
-      .menu {
-        display: none;
-        position: absolute;
-        top: 76px;
-        right: 4%;
-        left: 4%;
-        padding: 10px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        border-radius: 8px;
-        background: #06182d;
-        border: 1px solid rgba(0, 158, 232, .35);
-      }
-
-      .menu.activo { display: flex; }
-      .menu a { display: block; padding: 11px; }
-
-      .telefono-menu { display: none; }
-      .hero { min-height: 690px; background-position: 64% center; }
-      .beneficios-hero { gap: 12px; }
-      .planes { grid-template-columns: repeat(3, 1fr); }
-      .franja-beneficios { grid-template-columns: repeat(2, 1fr); }
-    }
+    :root { --blue:#00a9f4; --green:#00d979; --ink:#020913; --muted:#a9bfcd; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--ink); color:#f4fbff; font-family:Arial,Helvetica,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1180px,92%); margin:auto; }
+    header { position:absolute; z-index:10; width:100%; border-bottom:1px solid #ffffff1f; background:#010711a6; }
+    nav { height:76px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-weight:900; font-size:1.1rem; letter-spacing:.2px; }
+    .brand::before { content:'◉'; color:var(--blue); font-size:1.45rem; vertical-align:middle; margin-right:5px; }
+    .brand small { display:block; margin-left:27px; color:var(--blue); font-size:.51rem; letter-spacing:1.1px; }
+    .links { display:flex; gap:26px; list-style:none; font-size:.81rem; font-weight:bold; }
+    .links a:hover,.links a.active { color:var(--blue); }
+    .phone { border:1px solid #cde9fa99; border-radius:7px; padding:9px 12px; font-size:.77rem; font-weight:bold; }
+    .hamburger { display:none; color:white; background:transparent; border:0; font-size:1.7rem; }
+
+    .hero { min-height:760px; overflow:hidden; position:relative; display:flex; align-items:center; padding:135px 0 275px; background:
+      linear-gradient(90deg,#010812 0%,#010912e8 34%,#01091285 58%,#01091208 100%),
+      url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1920&q=90') center/cover; }
+    .earth { position:absolute; width:min(74vw,810px); aspect-ratio:1; right:-17vw; top:72px; z-index:0; border-radius:50%; background:url('https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Earth_seen_from_Apollo_17.jpg') center/cover; box-shadow:inset 48px 0 80px #0009, 0 0 58px #00a9f477; }
+    .earth::after { content:''; position:absolute; inset:-2%; border-radius:50%; background:radial-gradient(circle at 35% 45%,transparent 51%,#00000070 77%); }
+    .satellite { position:absolute; z-index:2; right:37%; top:150px; width:105px; height:42px; transform:rotate(-27deg); filter:drop-shadow(0 0 12px #18b7ffcc); }
+    .satellite .body { position:absolute; left:38px; top:10px; width:31px; height:22px; border:2px solid #c2eafa; border-radius:5px; background:linear-gradient(135deg,#e9fbff,#527c9a); }
+    .satellite .panel { position:absolute; top:8px; width:37px; height:27px; border:2px solid #6bd1ff; background:repeating-linear-gradient(90deg,#075c9c 0 7px,#37baff 8px 9px); }
+    .satellite .panel.left { left:0; } .satellite .panel.right { right:0; }
+    .satellite .antenna { position:absolute; left:52px; top:-13px; width:2px; height:18px; background:#dffaff; }
+    .satellite .antenna::before { content:''; position:absolute; left:-6px; top:-8px; width:12px; height:8px; border:2px solid #dffaff; border-bottom:0; border-radius:12px 12px 0 0; }
+    .hero-content { position:relative; z-index:3; max-width:500px; }
+    .eyebrow { color:var(--blue); font-weight:bold; font-size:.8rem; margin-bottom:10px; }
+    .hero h1 { font-size:clamp(2.7rem,5.4vw,4.6rem); line-height:.91; text-transform:uppercase; margin-bottom:18px; }
+    .hero h1 span { color:var(--blue); }
+    .hero p { max-width:385px; line-height:1.55; color:#dcebf3; }
+    .perks { display:flex; gap:20px; margin:25px 0 28px; }
+    .perk { text-align:center; color:#d7e9f4; font-size:.68rem; } .perk b { display:block; color:var(--blue); font-size:1.45rem; margin-bottom:5px; }
+    .button { border:0; border-radius:7px; padding:11px 15px; color:white; cursor:pointer; font-weight:bold; background:linear-gradient(135deg,#00bafd,#0071d1); box-shadow:0 6px 18px #008ee855; }
+    .button:hover { filter:brightness(1.15); transform:translateY(-1px); }
+
+    .plans-area { position:relative; z-index:4; margin-top:-245px; padding-bottom:32px; }
+    .plan-groups { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .group { padding:19px; border:1px solid #00a9f47a; border-radius:12px; background:#031221ed; box-shadow:0 0 26px #008ee826; }
+    .group.tv { border-color:#00d97985; box-shadow:0 0 26px #00d9791f; }
+    .group-title { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+    .group-title strong { display:block; font-size:1.08rem; } .group-title small { color:var(--muted); font-size:.64rem; }
+    .group-title i { color:var(--blue); font-size:1.3rem; } .tv .group-title i { color:var(--green); }
+    .plans { display:grid; grid-template-columns:repeat(5,1fr); gap:7px; }
+    .plan { min-width:0; text-align:center; padding:8px 2px; position:relative; }
+    .plan.featured { border-radius:7px; background:#00a9f42b; } .tv .plan.featured { background:#00d97925; }
+    .tag { position:absolute; left:50%; top:-9px; transform:translateX(-50%); white-space:nowrap; padding:3px 5px; border-radius:6px; color:white; background:var(--blue); font-size:.45rem; font-weight:bold; }
+    .tv .tag { color:#052416; background:var(--green); }
+    .plan h3 { font-size:1.42rem; line-height:1; } .mbps { font-size:.63rem; } .price { margin:7px 0 1px; color:var(--blue); font-size:.82rem; font-weight:bold; } .tv .price { color:var(--green); } .month { color:#a4bac7; font-size:.55rem; margin-bottom:9px; }
+    .plan .button { width:100%; padding:8px 2px; font-size:.61rem; } .tv .button { color:#052416; background:linear-gradient(135deg,#00e780,#00a955); }
+    .bar { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:17px 0; text-align:center; color:#d9e9f2; font-size:.71rem; } .bar span { color:var(--blue); font-size:1.25rem; }
+
+    section.content { padding:70px 0; } .dark { background:#041224; }
+    .heading { text-align:center; margin-bottom:30px; } .heading h2 { color:var(--blue); font-size:2rem; margin-bottom:8px; } .heading p { color:var(--muted); }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; } .card { padding:24px; border-radius:11px; border:1px solid #00a9f436; background:#061a30; } .card h3 { margin-bottom:10px; } .card p { color:var(--muted); line-height:1.5; }
+    .contact { max-width:650px; margin:auto; padding:30px; text-align:center; border:1px solid #00a9f455; border-radius:12px; background:#061a30; } .contact p { color:#dcebf3; margin:10px 0 20px; }
+    footer { padding:21px; background:#01050c; text-align:center; color:#78909e; font-size:.78rem; }
+
+    .modal { display:none; position:fixed; inset:0; z-index:50; align-items:center; justify-content:center; padding:18px; background:#000b; } .modal.show { display:flex; }
+    .dialog { position:relative; width:min(510px,100%); max-height:92vh; overflow:auto; padding:30px; border:1px solid #00a9f488; border-radius:13px; background:#07192d; box-shadow:0 0 35px #009ee844; }
+    .close { position:absolute; top:7px; right:14px; border:0; background:transparent; color:white; font-size:2rem; cursor:pointer; }
+    .dialog h2 { color:var(--blue); margin-bottom:7px; } .summary { margin:18px 0; padding:13px; border-left:3px solid var(--blue); border-radius:6px; background:#00a9f420; font-size:.9rem; } .summary p { margin:4px 0; }
+    .field { margin-bottom:13px; } .field label { display:block; margin-bottom:6px; font-weight:bold; } .field input { width:100%; padding:12px; border:1px solid #426177; border-radius:6px; background:#020c19; color:white; font:inherit; } .field input:focus { outline:2px solid var(--blue); }
+    .whatsapp { width:100%; color:#062416; background:#25d366; }
+    @media(max-width:900px){ .plan-groups{grid-template-columns:1fr}.plans-area{margin-top:-170px}.hero{padding-bottom:200px}.cards{grid-template-columns:1fr}.earth{right:-28vw}.satellite{right:22%;} }
+    @media(max-width:700px){ .hamburger{display:block}.links{display:none;position:absolute;top:76px;left:4%;right:4%;padding:10px;flex-direction:column;gap:0;border:1px solid #00a9f455;border-radius:8px;background:#06182d}.links.show{display:flex}.links a{display:block;padding:10px}.phone{display:none}.hero{min-height:690px;padding-top:128px;background-position:center}.earth{width:105vw;right:-51vw;top:130px;opacity:.8}.satellite{top:130px;right:16%;transform:scale(.7) rotate(-27deg)}.plans{grid-template-columns:repeat(3,1fr)}.bar{grid-template-columns:repeat(2,1fr)} }
   </style>
 </head>
-
 <body>
-  <header>
-    <nav class="contenedor">
-      <a class="logo" href="#inicio">GLOBAL SATELITAL<small>CONECTAMOS TU MUNDO</small></a>
-
-      <button class="btn-menu" id="btn-menu" aria-label="Abrir menú">☰</button>
-
-      <ul class="menu" id="menu">
-        <li><a class="activo" href="#inicio">Inicio</a></li>
-        <li><a href="#internet">Internet</a></li>
-        <li><a href="#internet-tv">Internet + TV</a></li>
-        <li><a href="#tv">TV</a></li>
-        <li><a href="#cobertura">Cobertura</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-
-      <a class="telefono-menu" href="https://wa.me/573188301348" target="_blank">◉ 318 830 1348</a>
-    </nav>
-  </header>
-
+  <header><nav class="wrap"><a class="brand" href="#inicio">GLOBAL SATELITAL<small>CONECTAMOS TU MUNDO</small></a><button class="hamburger" id="menu-button" aria-label="Abrir menú">☰</button><ul class="links" id="links"><li><a class="active" href="#inicio">Inicio</a></li><li><a href="#internet">Internet</a></li><li><a href="#internet-tv">Internet + TV</a></li><li><a href="#tv">TV</a></li><li><a href="#cobertura">Cobertura</a></li><li><a href="#nosotros">Nosotros</a></li><li><a href="#contacto">Contacto</a></li></ul><a class="phone" href="https://wa.me/573188301348" target="_blank">◉ 318 830 1348</a></nav></header>
   <main>
-    <section class="hero" id="inicio">
-      <div class="contenedor hero-contenido">
-        <div class="subtitulo">INTERNET DE ALTA VELOCIDAD</div>
-        <h1>Conectamos <span>tu mundo</span></h1>
-        <p>Disfruta de una conexión estable, rápida y confiable para tu hogar.</p>
-
-        <div class="beneficios-hero">
-          <div class="beneficio-hero"><strong>◉</strong>Alta<br>velocidad</div>
-          <div class="beneficio-hero"><strong>⌁</strong>Conexión<br>estable</div>
-          <div class="beneficio-hero"><strong>♢</strong>Seguridad<br>garantizada</div>
-          <div class="beneficio-hero"><strong>◌</strong>Soporte<br>técnico</div>
-        </div>
-
-        <button class="boton boton-azul solicitar"
-          data-plan="Por definir"
-          data-servicio="Consulta general"
-          data-valor="Por definir">
-          ◉ Solicita tu instalación
-        </button>
-      </div>
-    </section>
-
-    <div class="planes-zona contenedor">
-      <div class="planes-grid">
-        <section class="grupo-planes" id="internet">
-          <div class="grupo-titulo">
-            <div class="icono">◉</div>
-            <div>
-              <h2>INTERNET</h2>
-              <p>Planes disponibles</p>
-            </div>
-          </div>
-
-          <div class="planes">
-            <article class="plan">
-              <h3>20</h3><div class="mbps">Mbps</div>
-              <div class="precio">$25.000</div><div class="mes">/mes</div>
-              <button class="boton boton-azul solicitar" data-plan="20 Mbps" data-servicio="Internet" data-valor="$25.000">Solicitar</button>
-            </article>
-
-            <article class="plan">
-              <h3>50</h3><div class="mbps">Mbps</div>
-              <div class="precio">$35.000</div><div class="mes">/mes</div>
-              <button class="boton boton-azul solicitar" data-plan="50 Mbps" data-servicio="Internet" data-valor="$35.000">Solicitar</button>
-            </article>
-
-            <article class="plan destacado">
-              <span class="etiqueta">MÁS ELEGIDO</span>
-              <h3>100</h3><div class="mbps">Mbps</div>
-              <div class="precio">$45.000</div><div class="mes">/mes</div>
-              <button class="boton boton-azul solicitar" data-plan="100 Mbps" data-servicio="Internet" data-valor="$45.000">Solicitar</button>
-            </article>
-
-            <article class="plan">
-              <h3>150</h3><div class="mbps">Mbps</div>
-              <div class="precio">$55.000</div><div class="mes">/mes</div>
-              <button class="boton boton-azul solicitar" data-plan="150 Mbps" data-servicio="Internet" data-valor="$55.000">Solicitar</button>
-            </article>
-
-            <article class="plan">
-              <h3>200</h3><div class="mbps">Mbps</div>
-              <div class="precio">$65.000</div><div class="mes">/mes</div>
-              <button class="boton boton-azul solicitar" data-plan="200 Mbps" data-servicio="Internet" data-valor="$65.000">Solicitar</button>
-            </article>
-          </div>
-        </section>
-
-        <section class="grupo-planes tv" id="internet-tv">
-          <div class="grupo-titulo">
-            <div class="icono">▣</div>
-            <div>
-              <h2>INTERNET + TV</h2>
-              <p>Internet de alta velocidad + Televisión para tu hogar</p>
-            </div>
-          </div>
-
-          <div class="planes">
-            <article class="plan">
-              <h3>20</h3><div class="mbps">Mbps</div>
-              <div class="precio">$35.000</div><div class="mes">/mes</div>
-              <button class="boton solicitar" data-plan="20 Mbps" data-servicio="Internet + TV" data-valor="$35.000">Solicitar</button>
-            </article>
-
-            <article class="plan">
-              <h3>50</h3><div class="mbps">Mbps</div>
-              <div class="precio">$45.000</div><div class="mes">/mes</div>
-              <button class="boton solicitar" data-plan="50 Mbps" data-servicio="Internet + TV" data-valor="$45.000">Solicitar</button>
-            </article>
-
-            <article class="plan destacado">
-              <span class="etiqueta">MÁS ELEGIDO</span>
-              <h3>100</h3><div class="mbps">Mbps</div>
-              <div class="precio">$55.000</div><div class="mes">/mes</div>
-              <button class="boton solicitar" data-plan="100 Mbps" data-servicio="Internet + TV" data-valor="$55.000">Solicitar</button>
-            </article>
-
-            <article class="plan">
-              <h3>150</h3><div class="mbps">Mbps</div>
-              <div class="precio">$65.000</div><div class="mes">/mes</div>
-              <button class="boton solicitar" data-plan="150 Mbps" data-servicio="Internet + TV" data-valor="$65.000">Solicitar</button>
-            </article>
-
-            <article class="plan">
-              <h3>200</h3><div class="mbps">Mbps</div>
-              <div class="precio">$75.000</div><div class="mes">/mes</div>
-              <button class="boton solicitar" data-plan="200 Mbps" data-servicio="Internet + TV" data-valor="$75.000">Solicitar</button>
-            </article>
-          </div>
-        </section>
-      </div>
-
-      <div class="franja-beneficios">
-        <div><span>ϟ</span>Alta velocidad</div>
-        <div><span>◌</span>Conexión estable</div>
-        <div><span>♢</span>Seguridad</div>
-        <div><span>◉</span>Soporte técnico</div>
-      </div>
-    </div>
-
-    <section class="seccion-oscura" id="tv">
-      <div class="contenedor">
-        <div class="titulo-seccion">
-          <h2>Televisión para tu familia</h2>
-          <p>Entretenimiento, películas, noticias y programación para todos.</p>
-        </div>
-        <div class="tarjetas-info">
-          <article class="tarjeta-info"><h3>📺 Más entretenimiento</h3><p>Disfruta tus contenidos favoritos junto con tu conexión de Internet.</p></article>
-          <article class="tarjeta-info"><h3>⚽ Para todos los gustos</h3><p>Programación para niños, adultos, deportes, películas y mucho más.</p></article>
-          <article class="tarjeta-info"><h3>🏠 En tu hogar</h3><p>Un servicio pensado para que toda la familia disfrute en casa.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="cobertura">
-      <div class="contenedor">
-        <div class="titulo-seccion">
-          <h2>Cobertura</h2>
-          <p>Escríbenos y verificaremos la disponibilidad del servicio en tu barrio.</p>
-        </div>
-        <div class="contacto-box">
-          <p>Indícanos tu dirección y barrio al solicitar la instalación. Nuestro equipo te confirmará la cobertura.</p>
-          <button class="boton boton-azul solicitar" data-plan="Por definir" data-servicio="Consulta de cobertura" data-valor="Por definir">Consultar cobertura</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="seccion-oscura" id="nosotros">
-      <div class="contenedor">
-        <div class="titulo-seccion">
-          <h2>GLOBAL SATELITAL</h2>
-          <p>Conectamos tu mundo con Internet y televisión para tu hogar.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto">
-      <div class="contenedor">
-        <div class="titulo-seccion">
-          <h2>Contacto</h2>
-        </div>
-        <div class="contacto-box">
-          <p><strong>WhatsApp: +57 318 830 1348</strong></p>
-          <button class="boton boton-azul solicitar" data-plan="Por definir" data-servicio="Consulta general" data-valor="Por definir">Escribir por WhatsApp</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>© 2026 GLOBAL SATELITAL · Conectamos tu mundo</footer>
-
-  <!-- Formulario único para todos los botones -->
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-contenido">
-      <button class="cerrar" id="cerrar" aria-label="Cerrar">&times;</button>
-      <h2>Solicitud de instalación</h2>
-      <p>Completa tus datos para continuar por WhatsApp.</p>
-
-      <div class="resumen">
-        <p><strong>📡 Plan:</strong> <span id="plan-resumen"></span></p>
-        <p><strong>📺 Servicio:</strong> <span id="servicio-resumen"></span></p>
-        <p><strong>💰 Valor:</strong> <span id="valor-resumen"></span></p>
-      </div>
-
-      <form id="formulario">
-        <div class="campo">
-          <label for="nombre">Nombre completo</label>
-          <input id="nombre" type="text" required placeholder="Tu nombre completo">
-        </div>
-
-        <div class="campo">
-          <label for="telefono">Teléfono</label>
-          <input id="telefono" type="tel" required placeholder="Ejemplo: 3001234567">
-        </div>
-
-        <div class="campo">
-          <label for="direccion">Dirección</label>
-          <input id="direccion" type="text" required placeholder="Ejemplo: Calle 10 # 20-30">
-        </div>
-
-        <div class="campo">
-          <label for="barrio">Barrio</label>
-          <input id="barrio" type="text" required placeholder="Escribe tu barrio">
-        </div>
-
-        <button class="boton btn-whatsapp" type="submit">Enviar solicitud por WhatsApp</button>
-      </form>
-    </div>
-  </div>
-
+    <section class="hero" id="inicio"><div class="earth" aria-hidden="true"></div><div class="satellite" aria-hidden="true"><div class="panel left"></div><div class="panel right"></div><div class="body"></div><div class="antenna"></div></div><div class="wrap hero-content"><div class="eyebrow">INTERNET DE ALTA VELOCIDAD</div><h1>Conectamos <span>tu mundo</span></h1><p>Disfruta de una conexión estable, rápida y confiable para tu hogar.</p><div class="perks"><div class="perk"><b>◉</b>Alta<br>velocidad</div><div class="perk"><b>⌁</b>Conexión<br>estable</div><div class="perk"><b>♢</b>Seguridad<br>garantizada</div><div class="perk"><b>◌</b>Soporte<br>técnico</div></div><button class="button request" data-plan="Por definir" data-service="Consulta general" data-price="Por definir">◉ Solicita tu instalación</button></div></section>
+    <div class="wrap plans-area"><div class="plan-groups">
+      <section class="group" id="internet"><div class="group-title"><i>◉</i><div><strong>INTERNET</strong><small>Planes disponibles</small></div></div><div class="plans">
+        <article class="plan"><h3>20</h3><div class="mbps">Mbps</div><div class="price">$25.000</div><div class="month">/mes</div><button class="button request" data-plan="20 Mbps" data-service="Internet" data-price="$25.000">Solicitar</button></article>
+        <article class="plan"><h3>50</h3><div class="mbps">Mbps</div><div class="price">$35.000</div><div class="month">/mes</div><button class="button request" data-plan="50 Mbps" data-service="Internet" data-price="$35.000">Solicitar</button></article>
+        <article class="plan featured"><span class="tag">MÁS ELEGIDO</span><h3>100</h3><div class="mbps">Mbps</div><div class="price">$45.000</div><div class="month">/mes</div><button class="button request" data-plan="100 Mbps" data-service="Internet" data-price="$45.000">Solicitar</button></article>
+        <article class="plan"><h3>150</h3><div class="mbps">Mbps</div><div class="price">$55.000</div><div class="month">/mes</div><button class="button request" data-plan="150 Mbps" data-service="Internet" data-price="$55.000">Solicitar</button></article>
+        <article class="plan"><h3>200</h3><div class="mbps">Mbps</div><div class="price">$65.000</div><div class="month">/mes</div><button class="button request" data-plan="200 Mbps" data-service="Internet" data-price="$65.000">Solicitar</button></article>
+      </div></section>
+      <section class="group tv" id="internet-tv"><div class="group-title"><i>▣</i><div><strong>INTERNET + TV</strong><small>Internet de alta velocidad + televisión para tu hogar</small></div></div><div class="plans">
+        <article class="plan"><h3>20</h3><div class="mbps">Mbps</div><div class="price">$35.000</div><div class="month">/mes</div><button class="button request" data-plan="20 Mbps" data-service="Internet + TV" data-price="$35.000">Solicitar</button></article>
+        <article class="plan"><h3>50</h3><div class="mbps">Mbps</div><div class="price">$45.000</div><div class="month">/mes</div><button class="button request" data-plan="50 Mbps" data-service="Internet + TV" data-price="$45.000">Solicitar</button></article>
+        <article class="plan featured"><span class="tag">MÁS ELEGIDO</span><h3>100</h3><div class="mbps">Mbps</div><div class="price">$55.000</div><div class="month">/mes</div><button class="button request" data-plan="100 Mbps" data-service="Internet + TV" data-price="$55.000">Solicitar</button></article>
+        <article class="plan"><h3>150</h3><div class="mbps">Mbps</div><div class="price">$65.000</div><div class="month">/mes</div><button class="button request" data-plan="150 Mbps" data-service="Internet + TV" data-price="$65.000">Solicitar</button></article>
+        <article class="plan"><h3>200</h3><div class="mbps">Mbps</div><div class="price">$75.000</div><div class="month">/mes</div><button class="button request" data-plan="200 Mbps" data-service="Internet + TV" data-price="$75.000">Solicitar</button></article>
+      </div></section>
+    </div><div class="bar"><div><span>ϟ</span> Alta velocidad</div><div><span>◌</span> Conexión estable</div><div><span>♢</span> Seguridad</div><div><span>◉</span> Soporte técnico</div></div></div>
+    <section class="content dark" id="tv"><div class="wrap"><div class="heading"><h2>Televisión para tu familia</h2><p>Entretenimiento para todos en el hogar.</p></div><div class="cards"><article class="card"><h3>📺 Más entretenimiento</h3><p>Disfruta tus contenidos favoritos junto con tu conexión de Internet.</p></article><article class="card"><h3>⚽ Para todos los gustos</h3><p>Películas, deportes, noticias y programación para toda la familia.</p></article><article class="card"><h3>🏠 En tu hogar</h3><p>Un servicio creado para disfrutar cómodamente desde casa.</p></article></div></div></section>
+    <section class="content" id="cobertura"><div class="wrap"><div class="heading"><h2>Cobertura</h2><p>Consulta la disponibilidad de nuestros servicios en tu barrio.</p></div><div class="contact"><p>Cuéntanos tu dirección y barrio. Nuestro equipo verificará si tenemos cobertura para tu instalación.</p><button class="button request" data-plan="Por definir" data-service="Consulta de cobertura" data-price="Por definir">Consultar cobertura</button></div></div></section>
+    <section class="content dark" id="nosotros"><div class="wrap"><div class="heading"><h2>GLOBAL SATELITAL</h2><p>Conectamos tu mundo con Internet y televisión para tu hogar.</p></div></div></section>
+    <section class="content" id="contacto"><div class="wrap"><div class="heading"><h2>Contacto</h2></div><div class="contact"><p><b>WhatsApp: +57 318 830 1348</b></p><button class="button request" data-plan="Por definir" data-service="Consulta general" data-price="Por definir">Escribir por WhatsApp</button></div></div></section>
+  </main><footer>© 2026 GLOBAL SATELITAL · Conectamos tu mundo</footer>
+  <div class="modal" id="modal"><div class="dialog"><button class="close" id="close" aria-label="Cerrar">&times;</button><h2>Solicitud de instalación</h2><p>Completa tus datos para continuar por WhatsApp.</p><div class="summary"><p><b>📡 Plan:</b> <span id="summary-plan"></span></p><p><b>📺 Servicio:</b> <span id="summary-service"></span></p><p><b>💰 Valor:</b> <span id="summary-price"></span></p></div><form id="form"><div class="field"><label for="name">Nombre completo</label><input id="name" required></div><div class="field"><label for="number">Teléfono</label><input id="number" type="tel" required></div><div class="field"><label for="address">Dirección</label><input id="address" required></div><div class="field"><label for="neighborhood">Barrio</label><input id="neighborhood" required></div><button class="button whatsapp" type="submit">Enviar solicitud por WhatsApp</button></form></div></div>
   <script>
-    const menu = document.getElementById("menu");
-    const modal = document.getElementById("modal");
-    const formulario = document.getElementById("formulario");
-
-    let plan = "";
-    let servicio = "";
-    let valor = "";
-
-    document.getElementById("btn-menu").addEventListener("click", () => {
-      menu.classList.toggle("activo");
-    });
-
-    document.querySelectorAll(".menu a").forEach(enlace => {
-      enlace.addEventListener("click", () => menu.classList.remove("activo"));
-    });
-
-    document.querySelectorAll(".solicitar").forEach(boton => {
-      boton.addEventListener("click", () => {
-        plan = boton.dataset.plan;
-        servicio = boton.dataset.servicio;
-        valor = boton.dataset.valor;
-
-        document.getElementById("plan-resumen").textContent = plan;
-        document.getElementById("servicio-resumen").textContent = servicio;
-        document.getElementById("valor-resumen").textContent = valor;
-
-        modal.classList.add("activo");
-        modal.setAttribute("aria-hidden", "false");
-        document.getElementById("nombre").focus();
-      });
-    });
-
-    function cerrarFormulario() {
-      modal.classList.remove("activo");
-      modal.setAttribute("aria-hidden", "true");
-    }
-
-    document.getElementById("cerrar").addEventListener("click", cerrarFormulario);
-
-    modal.addEventListener("click", evento => {
-      if (evento.target === modal) cerrarFormulario();
-    });
-
-    document.addEventListener("keydown", evento => {
-      if (evento.key === "Escape") cerrarFormulario();
-    });
-
-    formulario.addEventListener("submit", evento => {
-      evento.preventDefault();
-
-      const nombre = document.getElementById("nombre").value.trim();
-      const telefono = document.getElementById("telefono").value.trim();
-      const direccion = document.getElementById("direccion").value.trim();
-      const barrio = document.getElementById("barrio").value.trim();
-
-      const mensaje = `Solicitud de instalación
-
-👤 Nombre: ${nombre}
-📱 Teléfono: ${telefono}
-📍 Dirección: ${direccion}
-🏘️ Barrio: ${barrio}
-📡 Plan: ${plan}
-📺 Servicio: ${servicio}
-💰 Valor: ${valor}`;
-
-      window.open(
-        `https://wa.me/573188301348?text=${encodeURIComponent(mensaje)}`,
-        "_blank"
-      );
-    });
+    const modal=document.getElementById('modal'), form=document.getElementById('form'); let chosenPlan='',chosenService='',chosenPrice='';
+    document.getElementById('menu-button').onclick=()=>document.getElementById('links').classList.toggle('show');
+    document.querySelectorAll('.links a').forEach(a=>a.onclick=()=>document.getElementById('links').classList.remove('show'));
+    document.querySelectorAll('.request').forEach(button=>button.onclick=()=>{chosenPlan=button.dataset.plan;chosenService=button.dataset.service;chosenPrice=button.dataset.price;document.getElementById('summary-plan').textContent=chosenPlan;document.getElementById('summary-service').textContent=chosenService;document.getElementById('summary-price').textContent=chosenPrice;modal.classList.add('show');document.getElementById('name').focus();});
+    const shut=()=>modal.classList.remove('show'); document.getElementById('close').onclick=shut; modal.onclick=e=>{if(e.target===modal)shut()};
+    form.onsubmit=e=>{e.preventDefault();const text=`Solicitud de instalación\n\n👤 Nombre: ${document.getElementById('name').value.trim()}\n📱 Teléfono: ${document.getElementById('number').value.trim()}\n📍 Dirección: ${document.getElementById('address').value.trim()}\n🏘️ Barrio: ${document.getElementById('neighborhood').value.trim()}\n📡 Plan: ${chosenPlan}\n📺 Servicio: ${chosenService}\n💰 Valor: ${chosenPrice}`;window.open(`https://wa.me/573188301348?text=${encodeURIComponent(text)}`,'_blank');};
   </script>
 </body>
 </html>
